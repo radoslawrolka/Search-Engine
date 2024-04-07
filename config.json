@@ -1,5 +1,6 @@
 {
-    "START_CRAWL": "https://en.wikipedia.org/wiki/Christopher_Nolan",
+    "START_CRAWL": "Christopher_Nolan",
+    "DOMAIN": "https://en.wikipedia.org/wiki/",
     "MAX_PAGES": 100000,
     "BAG_OF_WORDS": 50000,
     "RESULTS_PER_PAGE": 10

@@ -4,3 +4,5 @@ import json
 
 with open('./config.json') as f:
     config = json.load(f)
+
+web_crawler.get_data(config)
