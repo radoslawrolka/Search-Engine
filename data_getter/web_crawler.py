@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from urllib.parse import urljoin
+from urllib.parse import urljoin, quote
 from collections import deque
 
 
@@ -19,7 +19,7 @@ def get_data(config):
         response = requests.get(urljoin(config["DOMAIN"], page))
         soup = BeautifulSoup(response.text, "html.parser")
 
-        with open(f"./wiki/{page}.txt", "w") as f:
+        with open(f"./wiki/{quote(page, safe='')}.txt", "w") as f:
             for tag in soup.find_all(["h1", "h2", "h3", "h4", "h5", "p"]):
                 f.write(tag.get_text() + "\n")
 
