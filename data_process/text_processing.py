@@ -13,6 +13,7 @@ def text_preprocessing(config):
     for file in os.listdir('./data/articles'):
         local_dict = {}
         with open(f'./data/articles/{file}', 'r') as f:
+            file = file[:-4]
             text = f.read()
             text = text.lower()
             text = re.sub(r'[^a-z]', ' ', text)
