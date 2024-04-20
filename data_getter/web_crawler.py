@@ -19,8 +19,8 @@ def get_data(config):
         response = requests.get(urljoin(config["DOMAIN"], page))
         soup = BeautifulSoup(response.text, "html.parser")
 
-        with open(f"./wiki/{quote(page, safe='')}.txt", "w") as f:
-            for tag in soup.find_all(["h1", "h2", "h3", "h4", "h5", "p"]):
+        with open(f"./data/articles/{quote(page, safe='')}.txt", "w") as f:
+            for tag in soup.find_all(["h1", "h2", "h3", "h4", "h5", "p", "a", "li"]):
                 f.write(tag.get_text() + "\n")
 
         for anchor in soup.select("#bodyContent a"):
