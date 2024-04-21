@@ -3,3 +3,5 @@ Search-engine utilizing Singular Value Decomposition (SVD), web crawling, and In
 
 npm install
 npm start
+
+python run.py
