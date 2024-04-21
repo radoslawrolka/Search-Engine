@@ -1,2 +1,6 @@
 *.pyc
 data/
+node_modules/
+.expo/
+.*
+*lock.json
