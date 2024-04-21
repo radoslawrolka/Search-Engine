@@ -1,5 +1,6 @@
 import numpy as np
 import scipy.sparse as sparse
+from scipy.sparse.linalg import svds
 import os
 import json
 
@@ -31,3 +32,10 @@ def initialize_matrix(config):
         f.write('\n'.join(list_of_words))
     sparse.save_npz('./data/matrix.npz', matrix)
             
+def initialize_svd(matrix, k):
+    U, s, V = svds(matrix, k=k)
+    if not os.path.exists(f'./data/svd_{k}'):
+        os.makedirs(f'./data/svd_{k}')
+    np.save(f'./data/svd_{k}/U.npy', U)
+    np.save(f'./data/svd_{k}/s.npy', s)
+    np.save(f'./data/svd_{k}/V.npy', V)
