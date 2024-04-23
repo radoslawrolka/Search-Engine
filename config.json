@@ -1,7 +1,6 @@
 {
-    "START_CRAWL": "Christopher_Nolan",
+    "START_CRAWL": "Chimichanga",
     "DOMAIN": "https://en.wikipedia.org/wiki/",
     "MAX_PAGES": 100000,
-    "BAG_OF_WORDS": 50000,
-    "RESULTS_PER_PAGE": 10
+    "BAG_OF_WORDS": 50000
 }

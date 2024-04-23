@@ -1,5 +1,6 @@
 *.pyc
-data/
+/data/articles/
+/data/dicts/
 node_modules/
 .expo/
 .*
