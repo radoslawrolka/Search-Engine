@@ -3,5 +3,4 @@
 /data/dicts/
 node_modules/
 .expo/
-.*
 *lock.json
