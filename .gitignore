@@ -4,3 +4,4 @@
 node_modules/
 .expo/
 *lock.json
+.DS_Store

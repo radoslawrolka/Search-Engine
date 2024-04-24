@@ -15,15 +15,38 @@ def cosine():
     processed_query = query_processing.process_query(query_param)
     vector = query_processing.to_vector(processed_query, app.config['LIST_OF_WORDS'])
     result = cosine_search.search(vector, app.config['MATRIX'], results_num)
-    return jsonify({'result': result}), 200
+    response = [[app.config['LIST_OF_ARTICLES'][name], perc] for name, perc in result]
+    return jsonify({'result': response}), 200
 
-@app.route('/svd', methods=['GET'])
-def svd():
+@app.route('/svd_50', methods=['GET'])
+def svd_50():
     query_param = request.args.get('query', default = '', type = str)
     results_num = request.args.get('results_num', default = 10, type = int)
-    k_param = request.args.get('k', default = 1000, type = int)
-    U, s, V = app.config['SVD_DICT'][k_param]
+    U, s, V = app.config['SVD_50']
     processed_query = query_processing.process_query(query_param)
     vector = query_processing.to_vector(processed_query, app.config['LIST_OF_WORDS'])
     result = svd_search.search(vector, U, s, V, results_num)
-    return jsonify({'result': result}), 200
+    response = [[app.config['LIST_OF_ARTICLES'][name], perc] for name, perc in result]
+    return jsonify({'result': response}), 200
+
+@app.route('/svd_100', methods=['GET'])
+def svd_100():
+    query_param = request.args.get('query', default = '', type = str)
+    results_num = request.args.get('results_num', default = 10, type = int)
+    U, s, V = app.config['SVD_100']
+    processed_query = query_processing.process_query(query_param)
+    vector = query_processing.to_vector(processed_query, app.config['LIST_OF_WORDS'])
+    result = svd_search.search(vector, U, s, V, results_num)
+    response = [[app.config['LIST_OF_ARTICLES'][name], perc] for name, perc in result]
+    return jsonify({'result': response}), 200
+
+@app.route('/svd_200', methods=['GET'])
+def svd_200():
+    query_param = request.args.get('query', default = '', type = str)
+    results_num = request.args.get('results_num', default = 10, type = int)
+    U, s, V = app.config['SVD_200']
+    processed_query = query_processing.process_query(query_param)
+    vector = query_processing.to_vector(processed_query, app.config['LIST_OF_WORDS'])
+    result = svd_search.search(vector, U, s, V, results_num)
+    response = [[app.config['LIST_OF_ARTICLES'][name], perc] for name, perc in result]
+    return jsonify({'result': response}), 200

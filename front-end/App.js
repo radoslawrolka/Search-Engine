@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 function HomeScreen({ navigation }) {
-  const searchTypes = ['cosine', 'SVD1000']
+  const searchTypes = ['cosine', 'svd_50', 'svd_100', 'svd_200']
   const results_nums = [10, 20, 30]
   const [query, inputQuery] = useState('')
   const [searchID, setSearchType] = useState(0)
@@ -55,16 +55,20 @@ function QueryScreen({ route }) {
 
   const getResults = async () => {
     fetch(`http://localhost:5000/${searchType}?query=${query}&results_num=${results_num}`, {
-      method: 'GET',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    }).then(response => {console.log(response);response.json()})
-    .then(json => Promise.resolve(json['result']))
-    .then(result => setData(result))
-    console.log(data)
-  }
+  method: 'GET',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  },
+})
+.then(response => response.json())
+.then(data => {console.log(data); setData(data.result);})
+.then(() => console.log('Success:', data))
+.catch((error) => {
+  console.error('Error:', error);
+});}
+
+
 
   return (
     <View style={styles.container}>
