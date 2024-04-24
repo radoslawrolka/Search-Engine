@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, View, Text, StyleSheet, TextInput, Image, FlatList } from 'react-native';
+import { Button, View, Text, StyleSheet, TextInput, Image, FlatList, Linking } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -62,8 +62,7 @@ function QueryScreen({ route }) {
   },
 })
 .then(response => response.json())
-.then(data => {console.log(data); setData(data.result);})
-.then(() => console.log('Success:', data))
+.then(data => setData(data.result))
 .catch((error) => {
   console.error('Error:', error);
 });}
@@ -76,8 +75,12 @@ function QueryScreen({ route }) {
       <FlatList
         data={data}
         renderItem={({ item }) => (
-          <View style={styles.item}>
-            <Text>{item[0]} - {item[1]}</Text>
+          <View style={styles.product}>
+            <Text 
+              style={{color: 'blue'}}
+              onPress={() => Linking.openURL('https://en.wikipedia.org/wiki/' + item[0])}
+              >{decodeURI(decodeURI(item[0]))}</Text>
+            <Text style={{color: 'red'}}>{item[1]}%</Text>
           </View>
         )}
       />
@@ -125,6 +128,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     margin: 10,
+  },
+  product: {
+    padding: 10,
+    borderWidth: 2,
+    margin: 5,
+    borderRadius: 20,
+    borderColor: 'black',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
 
