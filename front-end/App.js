@@ -14,8 +14,7 @@ function HomeScreen({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.title}> Search-Engine</Text>
       <Image
-        source={{
-          uri: 'https://www.billboard.com/wp-content/uploads/2021/07/IDK-cr-Jack-McKain-press-2021-billboard-1548-1626710172.jpg'}}
+          source={require('./assets/logo.png')}
           style={{width: 300, height: 300}} />
       <TextInput
         style={styles.input}
